@@ -129,6 +129,7 @@
 				1ED19F69A1E6A3CC48B24319 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		9C00FF302622158C00681D31 /* Products */ = {
 			isa = PBXGroup;
@@ -185,6 +186,7 @@
 				9C00FF2B2622158C00681D31 /* Sources */,
 				9C00FF2C2622158C00681D31 /* Frameworks */,
 				9C00FF2D2622158C00681D31 /* Resources */,
+				0D0326BA4E257BEE70A3DE36 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,7 +205,6 @@
 				9C00FF412622158D00681D31 /* Sources */,
 				9C00FF422622158D00681D31 /* Frameworks */,
 				9C00FF432622158D00681D31 /* Resources */,
-				4C0F177052C0BA8AA9C47C62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,6 +224,7 @@
 				9C00FF4C2622158D00681D31 /* Sources */,
 				9C00FF4D2622158D00681D31 /* Frameworks */,
 				9C00FF4E2622158D00681D31 /* Resources */,
+				670E77989EBDA90E29593889 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,21 +306,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4C0F177052C0BA8AA9C47C62 /* [CP] Embed Pods Frameworks */ = {
+		0D0326BA4E257BEE70A3DE36 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BranchifyTests/Pods-BranchifyTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Branchify/Pods-Branchify-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BranchifyTests/Pods-BranchifyTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Branchify/Pods-Branchify-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BranchifyTests/Pods-BranchifyTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Branchify/Pods-Branchify-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		670E77989EBDA90E29593889 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Branchify-BranchifyUITests/Pods-Branchify-BranchifyUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Branchify-BranchifyUITests/Pods-Branchify-BranchifyUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Branchify-BranchifyUITests/Pods-Branchify-BranchifyUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C7EEAAD9B0EB6B13BAB28BD /* [CP] Check Pods Manifest.lock */ = {

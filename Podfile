@@ -6,12 +6,14 @@ target 'Branchify' do
   use_frameworks!
 
   # Pods for Branchify
+pod 'BDBOAuth1Manager'
+pod 'Alamofire'
+pod 'AFNetworking'
 
   target 'BranchifyTests' do
     inherit! :search_paths
     # Pods for testing
-pod 'BDBOAuth1Manager'
-pod 'Alamofire'
+
   end
 
   target 'BranchifyUITests' do
