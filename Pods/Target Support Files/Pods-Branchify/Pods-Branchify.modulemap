@@ -1,0 +1,6 @@
+framework module Pods_Branchify {
+  umbrella header "Pods-Branchify-umbrella.h"
+
+  export *
+  module * { export * }
+}
