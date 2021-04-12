@@ -1,4 +1,4 @@
-# Spotify
+# Branchify
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -57,3 +57,21 @@ Branchify offers users the ability to upload their favorite Spotify playlists an
 
 ## Wireframes
 <img src="https://imgur.com/YiLqlyH.jpg" width=800><br>
+
+# GROUP PROGRESS
+
+## Build 1
+
+### Completed User Stories
+
+* Graphic design, app icon, and launch screen
+* Login wireframe implementation
+* 50% of Spotify API implementation
+
+## Build 2
+
+### Completed User Stories
+
+* x
+* x
+* x
