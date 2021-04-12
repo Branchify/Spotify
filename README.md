@@ -68,7 +68,7 @@ Branchify offers users the ability to upload their favorite Spotify playlists an
 * Login wireframe implementation
 * 50% of Spotify API implementation
 
-Here's a walkthrough of implemented user stories that I split up into 3 parts:
+**GIF 1**
 
 ![](http://g.recordit.co/Z1FeMn7LwT.gif)
 
