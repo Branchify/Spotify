@@ -9,6 +9,7 @@ target 'Branchify' do
 pod 'BDBOAuth1Manager'
 pod 'Alamofire'
 pod 'AFNetworking'
+pod 'SwiftyJSON'
 
   target 'BranchifyTests' do
     inherit! :search_paths

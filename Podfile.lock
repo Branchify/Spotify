@@ -17,23 +17,27 @@ PODS:
   - Alamofire (5.4.1)
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - AFNetworking
   - Alamofire
   - BDBOAuth1Manager
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - AFNetworking
     - Alamofire
     - BDBOAuth1Manager
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: d0dc431873cc9b45d9d9e651b2f6362dffa8a550
+PODFILE CHECKSUM: 4a5285ffd360db936994f146626c024b44aa3fd4
 
 COCOAPODS: 1.10.1

@@ -28,7 +28,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onLoginButton:" destination="9Tk-rD-Vu5" eventType="touchUpInside" id="4Xc-DW-brK"/>
+                                    <action selector="onLoginButton:" destination="9Tk-rD-Vu5" eventType="touchUpInside" id="fxA-if-eTY"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="spotify-11" translatesAutoresizingMaskIntoConstraints="NO" id="BX8-sz-56P">

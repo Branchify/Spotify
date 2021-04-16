@@ -8,9 +8,39 @@
 import UIKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate,
+                   SPTAppRemotePlayerStateDelegate {
+    
+    var playURI = ""
+    
+    let SpotifyClientID = "8928f5c47fda48048c5238c94ab09650"
+    let SpotifyRedirectURL = URL(string: "Branchify-login://callback")!
+    var accessToken = ""
 
+    lazy var configuration = SPTConfiguration(
+      clientID: SpotifyClientID,
+      redirectURL: SpotifyRedirectURL
+    )
+    
+    //initialize App Remote
+    lazy var appRemote: SPTAppRemote = {
+      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
+      appRemote.connectionParameters.accessToken = self.accessToken
+      appRemote.delegate = self
+      return appRemote
+    }()
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+      let parameters = appRemote.authorizationParameters(from: url);
 
+            if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+                appRemote.connectionParameters.accessToken = access_token
+                self.accessToken = access_token
+            } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+                // Show the error
+            }
+      return true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,7 +60,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+    
+    //needed to implement SPTAppRemoteDelegate and SPTAppRemotePlayerStateDelegate
+    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
+        self.appRemote.playerAPI?.delegate = self
+          self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+            if let error = error {
+              debugPrint(error.localizedDescription)
+            }
+          })
+      print("connected")
+    }
+    
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+      print("disconnected")
+    }
+    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
+      print("failed")
+    }
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+        debugPrint("Track name: %@", playerState.track.name)
+      print("player state changed")
+    }
+    
+    
+    func connect() {
+      self.appRemote.authorizeAndPlayURI(self.playURI)
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+      if self.appRemote.isConnected {
+        self.appRemote.disconnect()
+      }
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+      if let _ = self.appRemote.connectionParameters.accessToken {
+        self.appRemote.connect()
+      }
+    }
 
 }
 

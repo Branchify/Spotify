@@ -9,10 +9,13 @@ import UIKit
 import BDBOAuth1Manager
 
 class SpotifyAPICaller: BDBOAuth1SessionManager {
-    static let client = SpotifyAPICaller(baseURL: URL(string: "https://api.spotify.com"), consumerKey: "8928f5c47fda48048c5238c94ab09650", consumerSecret: "f9aaeabe68f14dc4a0651d3237eccc58")
+    static var baseURL = "https://api.spotify.com"
+
+    static let client = SpotifyAPICaller(baseURL: URL(string: baseURL), consumerKey: "8928f5c47fda48048c5238c94ab09650", consumerSecret: "f9aaeabe68f14dc4a0651d3237eccc58")
 //    static let getUserEndpoint = "/users/"
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) -> ())?
+    
     
 func handleOpenUrl(url: URL){
     let requestToken = BDBOAuth1Credential(queryString: url.query)
@@ -23,12 +26,12 @@ func handleOpenUrl(url: URL){
     })
 }
     
-    
-func login(url: String, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+func login(id: String, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+    let _requestURL = SpotifyAPICaller.baseURL + "/users/" + id
     loginSuccess = success
     loginFailure = failure
     SpotifyAPICaller.client?.deauthorize()
-    SpotifyAPICaller.client?.fetchRequestToken(withPath: url, method: "GET", callbackURL: URL(string: "alamoSpotify://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
+    SpotifyAPICaller.client?.fetchRequestToken(withPath: SpotifyAPICaller.baseURL, method: "GET", callbackURL: URL(string: "alamoSpotify://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
         let url = URL(string: "https://api.spotify.com/oauth/authorize?oauth_token=\(requestToken.token!)")!
         UIApplication.shared.open(url)
     }, failure: { (error: Error!) -> Void in
@@ -40,4 +43,6 @@ func login(url: String, success: @escaping () -> (), failure: @escaping (Error) 
 func logout (){
     deauthorize()
 }
+    
+
 }

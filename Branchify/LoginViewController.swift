@@ -15,8 +15,16 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+ 
     @IBAction func onLoginButton(_ sender: Any) {
-//        "https:open.spotify.com/user"
+        let myUrl = "https://api.spotify.com/oauth/request_token"
+        
+        SpotifyAPICaller.client?.login(id: myUrl, success: {
+            UserDefaults.standard.set(true, forKey: "userLoggedIn")
+            self.performSegue(withIdentifier: "loginToHome", sender: self)
+        }, failure: { (Error) in
+            print("Could not log in!")
+        })
     }
     
     /*
