@@ -75,11 +75,15 @@
       <dict>
         <key>com.Branchify.Spotify</key>
         <string>com.spotify.iOS-SDK-Quick-Start</string>
-        <key>Branchify-login://callback</key>
+        <key>Branchify-login://</key>
         <array>
           <string>spotify-ios-quick-start</string>
         </array>
       </dict>
     </array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key><true/>
+    </dict>
 </dict>
 </plist>

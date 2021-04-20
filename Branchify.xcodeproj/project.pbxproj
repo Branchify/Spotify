@@ -10,6 +10,7 @@
 		3459EC331506E50BD8C7424A /* Pods_Branchify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75F365C5B2A64D0B95C1ADE /* Pods_Branchify.framework */; };
 		37F744F5D0EA03C67AD6E5E5 /* Pods_BranchifyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F3AD474683FE0E01515CB3 /* Pods_BranchifyTests.framework */; };
 		52B599720A5C35D3EE7C6395 /* Pods_Branchify_BranchifyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C849BEC01542AAAE6F630D55 /* Pods_Branchify_BranchifyUITests.framework */; };
+		9C000003262E2DC200681D31 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C000002262E2DC200681D31 /* Constants.swift */; };
 		9C00FF332622158C00681D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00FF322622158C00681D31 /* AppDelegate.swift */; };
 		9C00FF352622158C00681D31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00FF342622158C00681D31 /* SceneDelegate.swift */; };
 		9C00FF372622158C00681D31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00FF362622158C00681D31 /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 		32F3AD474683FE0E01515CB3 /* Pods_BranchifyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BranchifyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E30846D042D2B9ACC5331B3 /* Pods-BranchifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BranchifyTests.release.xcconfig"; path = "Target Support Files/Pods-BranchifyTests/Pods-BranchifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		7FDC109C36DA8C43EBB6044A /* Pods-Branchify-BranchifyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Branchify-BranchifyUITests.debug.xcconfig"; path = "Target Support Files/Pods-Branchify-BranchifyUITests/Pods-Branchify-BranchifyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9C000002262E2DC200681D31 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9C00FF2F2622158C00681D31 /* Branchify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Branchify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C00FF322622158C00681D31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C00FF342622158C00681D31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				9C00FF402622158D00681D31 /* Info.plist */,
 				9C00FF6526227ECA00681D31 /* LoginViewController.swift */,
 				9C00FFEC2629DB7D00681D31 /* Branchify-Bridging-Header.h */,
+				9C000002262E2DC200681D31 /* Constants.swift */,
 			);
 			path = Branchify;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				9C00FF332622158C00681D31 /* AppDelegate.swift in Sources */,
 				9C00FF352622158C00681D31 /* SceneDelegate.swift in Sources */,
 				9C00FF7E262286C900681D31 /* SpotifyAPICaller.swift in Sources */,
+				9C000003262E2DC200681D31 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

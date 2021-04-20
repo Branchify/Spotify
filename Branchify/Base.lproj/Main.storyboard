@@ -38,19 +38,29 @@
                                     <constraint firstAttribute="width" constant="120" id="fqj-Ra-4vP"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please log into your Spotify!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jH-yn-6qL">
+                                <rect key="frame" x="50" y="382" width="314" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="U1H-g6-d6U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.86270739370000005" blue="0.021052125599999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hkY-OO-gu9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="upt-uc-ArK" firstAttribute="top" secondItem="9jH-yn-6qL" secondAttribute="bottom" constant="8" symbolic="YES" id="C85-Fp-AmE"/>
                             <constraint firstItem="upt-uc-ArK" firstAttribute="centerX" secondItem="B2x-tz-b4k" secondAttribute="centerX" id="F5G-PM-s1Y"/>
                             <constraint firstItem="upt-uc-ArK" firstAttribute="centerY" secondItem="B2x-tz-b4k" secondAttribute="centerY" id="V3n-vf-CTM"/>
+                            <constraint firstItem="9jH-yn-6qL" firstAttribute="leading" secondItem="hkY-OO-gu9" secondAttribute="leading" constant="50" id="aKP-tJ-eGP"/>
                             <constraint firstItem="upt-uc-ArK" firstAttribute="top" secondItem="BX8-sz-56P" secondAttribute="bottom" constant="71" id="dvk-Aw-o9I"/>
                             <constraint firstItem="BX8-sz-56P" firstAttribute="centerX" secondItem="B2x-tz-b4k" secondAttribute="centerX" id="jmO-ao-5UO"/>
+                            <constraint firstItem="9jH-yn-6qL" firstAttribute="centerX" secondItem="upt-uc-ArK" secondAttribute="centerX" id="lsc-KR-Ql5"/>
+                            <constraint firstItem="9jH-yn-6qL" firstAttribute="centerX" secondItem="B2x-tz-b4k" secondAttribute="centerX" id="pPQ-CI-hOi"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="I89-yj-BJd" kind="presentation" identifier="loginToHome" id="oh9-l1-HA6"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N8u-LQ-aW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,7 +71,7 @@
             <objects>
                 <tableViewController id="MVx-at-L7f" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Mso-mS-J0f">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -88,9 +98,9 @@
         <!--Navigation Controller-->
         <scene sceneID="DMU-V9-qc7">
             <objects>
-                <navigationController id="I89-yj-BJd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainLoginNavigation" modalPresentationStyle="fullScreen" id="I89-yj-BJd" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aeZ-5U-6GZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
