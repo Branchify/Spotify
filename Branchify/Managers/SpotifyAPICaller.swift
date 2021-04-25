@@ -27,7 +27,7 @@ func handleOpenUrl(url: URL){
 }
     
 func login(id: String, success: @escaping () -> (), failure: @escaping (Error) -> ()){
-    let _requestURL = SpotifyAPICaller.baseURL + "/users/" + id
+//    let _requestURL = SpotifyAPICaller.baseURL + "/users/" + id
     loginSuccess = success
     loginFailure = failure
     SpotifyAPICaller.client?.deauthorize()

@@ -10,8 +10,14 @@ import WebKit
 import Alamofire
 
 class LoginViewController: UIViewController, WKNavigationDelegate {
+    @IBOutlet weak var loginButton: UIButton!
+    
     
     var accessToken: String!
+    var spotifyId = ""
+    var spotifyDisplayName = ""
+    var spotifyEmail = ""
+    var spotifyAvatarURL = ""
     var webView = WKWebView()
 
     override func viewDidLoad() {
@@ -22,13 +28,19 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     
  
     @IBAction func onLoginButton(_ sender: Any) {
+        spotifyAuthVC()
+    }
+    
+    func spotifyAuthVC() {
         let spotifyVC = UIViewController() // Create Spotify Auth View Controller
-        let webView = WKWebView() // Create WebView
+        let webView = WKWebView(frame: self.view.frame) // Create WebView
         let navController = UINavigationController(rootViewController: spotifyVC) // Create Navigation Controller
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelAction))
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.refreshAction))
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
+//        self.view.addSubview(self.view.webView)
+//        webView.loadHTMLString(htmlString, baseURL: nil)
         webView.navigationDelegate = self
         spotifyVC.view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +55,8 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         let urlRequest = URLRequest.init(url: URL.init(string: authURL)!)
         webView.load(urlRequest)
         
+        print("It is failing right now")
+        
         spotifyVC.navigationItem.leftBarButtonItem = cancelButton
         spotifyVC.navigationItem.rightBarButtonItem = refreshButton
         navController.navigationBar.titleTextAttributes = textAttributes
@@ -53,7 +67,6 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
         navController.modalTransitionStyle = .coverVertical
         
         self.present(navController, animated: true, completion: nil)
-        
     }
     
     @objc func cancelAction() {
@@ -85,33 +98,73 @@ class LoginViewController: UIViewController, WKNavigationDelegate {
     }
     
     func handleAuth(spotifyAccessToken: String) {
-        self.accessToken = spotifyAccessToken
-        print("got access token")
-        
-//        // send access token to API
-//        let postAPIUrl = "https://that-tune.herokuapp.com/api/new-token"
-//        let payload = ["token": String(self.accessToken)]
-//        AF.request(postAPIUrl, method: .post, parameters: payload, encoding: JSONEncoding.default).responseJSON { response in
-//            debugPrint(response)
+            fetchSpotifyProfile(accessToken: spotifyAccessToken)
+
+            // Close Spotify Auth ViewController after getting Access Token
+            self.dismiss(animated: true, completion: nil)
+        }
+
+
+        func fetchSpotifyProfile(accessToken: String) {
+            let tokenURLFull = "https://api.spotify.com/v1/me"
+            let verify: NSURL = NSURL(string: tokenURLFull)!
+            let request: NSMutableURLRequest = NSMutableURLRequest(url: verify as URL)
+            request.addValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
+            let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+                if error == nil {
+                    let result = try! JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [AnyHashable: Any]
+                    //AccessToken
+                    print("Spotify Access Token: \(accessToken)")
+                    //Spotify Handle
+                    let spotifyId: String! = (result?["id"] as! String)
+                    print("Spotify Id: \(spotifyId ?? "")")
+                    //Spotify Display Name
+                    let spotifyDisplayName: String! = (result?["display_name"] as! String)
+                    print("Spotify Display Name: \(spotifyDisplayName ?? "")")
+                    //Spotify Email
+                    let spotifyEmail: String! = (result?["email"] as! String)
+                    print("Spotify Email: \(spotifyEmail ?? "")")
+                    //Spotify Profile Avatar URL
+                    let spotifyAvatarURL: String!
+                    let spotifyProfilePicArray = result?["images"] as? [AnyObject]
+                    if (spotifyProfilePicArray?.count)! > 0 {
+                        spotifyAvatarURL = spotifyProfilePicArray![0]["url"] as? String
+                    } else {
+                        spotifyAvatarURL = "Not exists"
+                    }
+                    print("Spotify Profile Avatar URL: \(spotifyAvatarURL ?? "")")
+                }
+            }
+            task.resume()
+        }
+//    func handleAuth(spotifyAccessToken: String) {
+//        self.accessToken = spotifyAccessToken
+//        print("got access token")
 //
-//            // UserDefaults.standard.set(response["user_id"], forKey: "user")
-//        }
-        
-        self.dismiss(animated: true, completion: nil)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainLoginNavigation")
-        
-        (UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate).changeRootViewController(mainTabBarController)
-    }
-//        let myUrl = "https://api.spotify.com/oauth/request_token"
+////        // send access token to API
+////        let postAPIUrl = "https://that-tune.herokuapp.com/api/new-token"
+////        let payload = ["token": String(self.accessToken)]
+////        AF.request(postAPIUrl, method: .post, parameters: payload, encoding: JSONEncoding.default).responseJSON { response in
+////            debugPrint(response)
+////
+////            // UserDefaults.standard.set(response["user_id"], forKey: "user")
+////        }
 //
-//        SpotifyAPICaller.client?.login(id: myUrl, success: {
-//            UserDefaults.standard.set(true, forKey: "userLoggedIn")
-//            self.performSegue(withIdentifier: "loginToHome", sender: self)
-//        }, failure: { (Error) in
-//            print("Could not log in!")
-//        })
+//        self.dismiss(animated: true, completion: nil)
+//
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainLoginNavigation")
+//
+//        (UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate).changeRootViewController(mainTabBarController)
+//    }
+////        let myUrl = "https://api.spotify.com/oauth/request_token"
+////
+////        SpotifyAPICaller.client?.login(id: myUrl, success: {
+////            UserDefaults.standard.set(true, forKey: "userLoggedIn")
+////            self.performSegue(withIdentifier: "loginToHome", sender: self)
+////        }, failure: { (Error) in
+////            print("Could not log in!")
+////        })
     }
     
     /*

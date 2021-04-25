@@ -11,11 +11,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // deleted this from App delegate
 //    SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate
+    
+    var window: UIWindow?
 
     var playURI = ""
 
     let SpotifyClientID = "8928f5c47fda48048c5238c94ab09650"
-    let SpotifyRedirectURL = URL(string: "Branchify-login://callback")!
+//    let SpotifyRedirectURL = URL(string: "https://Branchify-login://")!
     var accessToken = ""
 
 //    lazy var configuration = SPTConfiguration(
@@ -32,6 +34,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }()
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+//        window.makeKeyAndVisible()
+//        self.window = window
+        if AuthManager.shared.isSignedIn {
+            window?.rootViewController = TabBarViewController()
+        } else {
+            let navvc = UINavigationController(rootViewController: WelcomeViewController())
+            navvc.navigationBar.prefersLargeTitles = true
+            navvc.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
+            window?.rootViewController = navvc
+        }
+        
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+//        window.rootViewController = WelcomeViewController()
+        window?.makeKeyAndVisible()
+//        print(AuthManager.shared.signInURL?.absoluteString)
 //      let parameters = appRemote.authorizationParameters(from: url);
 //
 //            if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
@@ -45,6 +63,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+////        window.rootViewController = WelcomeViewController()
+//        window.makeKeyAndVisible()
+//        self.window = window
+//        if AuthManager.shared.isSignedIn {
+//            window.rootViewController = TabBarViewController()
+//        } else {
+//            let navvc = UINavigationController(rootViewController: WelcomeViewController())
+//            navvc.navigationBar.prefersLargeTitles = true
+//            navvc.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
+//            window.rootViewController = navvc
+//        }
+//
+////        let window = UIWindow(frame: UIScreen.main.bounds)
+////        window.rootViewController = WelcomeViewController()
+//        window.makeKeyAndVisible()
+//        self.window = window
+        
         return true
     }
 

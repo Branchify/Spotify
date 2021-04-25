@@ -6,6 +6,7 @@
 //
 
 import UIKit
+//import WebKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,7 +17,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowscene = (scene as? UIWindowScene) else {
+            print ("IT IS FAILING HERE")
+
+            return
+        }
+        
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+        let window = UIWindow(windowScene: windowscene)
+//        window.rootViewController = WelcomeViewController()
+        window.makeKeyAndVisible()
+        self.window = window
+        if AuthManager.shared.isSignedIn {
+            window.rootViewController = TabBarViewController()
+        } else {
+            let navvc = UINavigationController(rootViewController: WelcomeViewController())
+            navvc.navigationBar.prefersLargeTitles = true
+            navvc.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
+            window.rootViewController = navvc
+        }
+        
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+//        window.rootViewController = WelcomeViewController()
+        window.makeKeyAndVisible()
+//        print(AuthManager.shared.signInURL?.absoluteString)
+        self.window = window
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,10 +80,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window.rootViewController = vc
         
-        // add animation
+//         add animation
         UIView.transition(with: window, duration: 0.5, options: [.transitionFlipFromLeft], animations: nil, completion: nil)
     }
 
 
 }
-
